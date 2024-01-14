@@ -90,6 +90,7 @@
 
 <script setup>
 import { debounce } from '../utility/debounce';
+import { useDebounceFn } from '@vueuse/core'
 
 const searchStr = ref('');
 const timeoutId = ref(null);
@@ -117,7 +118,7 @@ const countPerPage = computed(() => {
 
 watch(pageNum, () => {
   isLoading.value = true
-  timeoutId.value = debounce(findBreeds, timeoutId.value)()
+  debouncedSearch();
 })
 
 watch(toggleDialog, (newVal) => {
@@ -134,7 +135,7 @@ const searchBreed = () => {
     isLoading.value = true
     firstLoad.value = false
     pageNum.value = 0
-    timeoutId.value = debounce(findBreeds, timeoutId.value)()
+    debouncedSearch();
   } else {
     isLoading.value = false
     pageNum.value = 0
@@ -145,11 +146,11 @@ const searchBreed = () => {
 
 const findBreeds = async () => {
   if (searchStr.value) {
-    const searchRes = await useFetch(`/api/theCatApi/fetchCatsByBreed?breed=${searchStr.value}`)
+    const searchRes = await useFetch(`/api/theCatApi/fetchCatsByBreed?breed=${searchStr.value}&page=${pageNum.value}&limit=${countPerPage.value}`)
   
-    if (searchRes && searchRes.data.value && searchRes.data.value.length) {
-      resultCount.value = searchRes.data.value.length
-      searchResults.value = searchRes.data.value
+    if (searchRes && searchRes.data.value && searchRes.data.value.results.length) {
+      resultCount.value = searchRes.data.value.dataCount;
+      searchResults.value = searchRes.data.value.results
       nextDisable.value =
         resultCount.value < (pageNum.value + 1) * countPerPage.value
     } else if (searchRes && searchRes.error.value?.statusCode) {
@@ -158,9 +159,10 @@ const findBreeds = async () => {
       error.value = searchRes.error
     }
   }
-  timeoutId.value = null
   isLoading.value = false
 }
+
+const debouncedSearch = useDebounceFn(findBreeds, 1000, {maxWait: 3000});
 
 const showDialog = (selectedBreed) => {
   catBreed.value = selectedBreed
