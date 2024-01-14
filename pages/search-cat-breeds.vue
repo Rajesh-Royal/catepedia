@@ -90,7 +90,8 @@
 </template>
 
 <script setup>
-import { useDebounceFn } from '@vueuse/core'
+import { useDebounceFn } from '@vueuse/core';
+import { siteName } from '../utility/metaTags';
 
 const searchStr = ref('');
 const timeoutId = ref(null);
@@ -168,6 +169,10 @@ const showDialog = (selectedBreed) => {
   catBreed.value = selectedBreed
   toggleDialog.value = !toggleDialog.value
 }
+
+useHead({
+  title: siteName + ' | Search cat by their breed name',
+})
 </script>
 
 

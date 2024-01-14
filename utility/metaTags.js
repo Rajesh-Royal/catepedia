@@ -1,7 +1,10 @@
+export const siteName = "Catepedia";
+export const siteTitle = "The Ultimate Guide to Cat Breeds";
+
 const base = [
   { charset: 'utf-8' },
   { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-  { name: 'title', content: 'Catepedia' },
+  { name: 'title', content: 'Catepedia | The Ultimate Guide to Cat Breeds' },
   {
     hid: 'description',
     name: 'description',

@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts" setup>
-import metaTags from './utility/metaTags';
+import metaTags, {siteTitle, siteName} from './utility/metaTags';
 const route = useRoute();
 
 useHead({
-  title: 'Catepedia' +( route.path !== '/' ? route.path.replace('/', ' - ') : ''),
+  title: siteName + ( route.path !== '/' ? route.path.replace('/', ' | ') : ` | ${siteTitle}`),
   meta: metaTags
-})
+});
 </script>
