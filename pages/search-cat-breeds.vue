@@ -93,7 +93,11 @@
 import { useDebounceFn } from '@vueuse/core';
 import { siteName } from '../utility/metaTags';
 
-const searchStr = ref('');
+const route = useRoute();
+
+const catBreedFromRoute = route.query.breed || '';
+
+const searchStr = ref(catBreedFromRoute);
 const timeoutId = ref(null);
 const searchResults = ref([]);
 const resultCount = ref(0);
@@ -106,6 +110,12 @@ const nextDisable = ref(false);
 const error = ref({}); 
 
 const {isDesktop, isTablet} = useDevice();
+
+onMounted(() => {
+  if(catBreedFromRoute) {
+    searchBreed();
+  }
+});
 
 const countPerPage = computed(() => {
   let cardCount = 5
