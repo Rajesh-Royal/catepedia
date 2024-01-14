@@ -10,7 +10,7 @@
         :aria-describedby="
           catBreed && catBreed.description ? 'cat-description' : ''
         "
-        class="mx-auto max-w-3xl shadow-lg rounded-xl bg-white-dark h-full w-full p-4 grid grid-cols-12 gap-3 auto-rows-min overflow-auto"
+        class="mx-auto max-w-3xl shadow-lg rounded border border-dashed border-2 bg-white-dark h-full w-full p-4 grid grid-cols-12 gap-3 auto-rows-min overflow-auto"
       >
         <div class="col-span-12">
           <button
@@ -264,5 +264,26 @@ export default {
 
 .cat-property-title {
   @apply text-xl mb-1 mt-2.5;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6D5892; 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 </style>

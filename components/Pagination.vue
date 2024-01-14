@@ -3,7 +3,7 @@
     <button
       :disabled="pageNum === 0 || isLoading"
       autocomplete="off"
-      class="p-2 mr-4 border-2 border-blue-dark focus:bg-white focus:text-blue-dark disabled:opacity-20 bg-blue-dark text-white rounded-xl shadow-lg"
+      class="p-2 mr-4 border-2 border-white border-dashed focus:bg-white focus:text-blue-dark disabled:opacity-20 bg-blue-dark text-white rounded-xl shadow-lg"
       @click="firstPage"
     >
       First
@@ -11,19 +11,19 @@
     <button
       :disabled="prevDisable || isLoading"
       autocomplete="off"
-      class="p-2 mr-4 border-2 border-blue-dark focus:bg-white focus:text-blue-dark disabled:opacity-20 bg-blue-dark text-white rounded-xl shadow-lg"
+      class="p-2 mr-4 border-2 border-white border-dashed focus:bg-white focus:text-blue-dark disabled:opacity-20 bg-blue-dark text-white rounded-xl shadow-lg"
       @click="prevPage"
     >
       Prev
     </button>
     <span
-      class="px-2 mr-4 text-xl place-self-center border-2 border-blue-dark rounded-xl"
+      class="px-2 mr-4 text-xl place-self-center border-2 border-white border-dashed rounded-xl"
     >
       {{ pageNum + 1 }}
     </span>
     <button
       :disabled="nextDisable || isLoading"
-      class="p-2 mr-4 border-2 border-blue-dark focus:bg-white focus:text-blue-dark disabled:opacity-20 bg-blue-dark text-white rounded-xl shadow-lg"
+      class="p-2 mr-4 border-2 border-white border-dashed focus:bg-white focus:text-blue-dark disabled:opacity-20 bg-blue-dark text-white rounded-xl shadow-lg"
       @click="nextPage"
     >
       Next
@@ -31,7 +31,7 @@
     <button
       :disabled="nextDisable || isLoading"
       autocomplete="off"
-      class="p-2 border-2 border-blue-dark focus:bg-white focus:text-blue-dark disabled:opacity-20 bg-blue-dark text-white rounded-xl shadow-lg"
+      class="p-2 border-2 border-white border-dashed focus:bg-white focus:text-blue-dark disabled:opacity-20 bg-blue-dark text-white shadow-lg rounded-xl"
       @click="lastPage"
     >
       Last
@@ -65,16 +65,16 @@ export default {
   },
   methods: {
     nextPage() {
-      this.$emit('update:page-num', this.pageNum + 1)
+      this.$emit('change-page', this.pageNum + 1)
     },
     prevPage() {
-      this.$emit('update:page-num', this.pageNum - 1)
+      this.$emit('change-page', this.pageNum - 1)
     },
     firstPage() {
-      this.$emit('update:page-num', 0)
+      this.$emit('change-page', 0)
     },
     lastPage() {
-      this.$emit('update:page-num', this.lastPageNum)
+      this.$emit('change-page', this.lastPageNum)
     },
   },
 }
