@@ -11,6 +11,9 @@ const route = useRoute();
 
 useHead({
   title: siteName + ( route.path !== '/' ? route.path.replace('/', ' | ') : ` | ${siteTitle}`),
-  meta: metaTags
+  meta: metaTags,
+  bodyAttrs: {
+    class: "bg-pink",
+  }
 });
 </script>
