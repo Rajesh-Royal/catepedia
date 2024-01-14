@@ -1,9 +1,3 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-  <div>
-    <Cat404 />
-  </div>
+ <h1>Home Page</h1>
 </template>
