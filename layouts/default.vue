@@ -6,7 +6,7 @@
           role="dialog"
           aria-labelledby="app-info"
           aria-describedby="app-description"
-          class="mx-auto max-w-3xl shadow-lg rounded-xl bg-white-dark w-full p-4 overflow-auto"
+          class="mx-auto max-w-3xl shadow-lg rounded border border-dashed border-2 bg-white-dark w-full p-4 overflow-auto"
         >
           <button
             ref="closeHelp"
