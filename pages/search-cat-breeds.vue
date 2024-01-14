@@ -74,8 +74,9 @@
       </div>
       <lazy-pagination
         v-if="searchResults.length"
-        :page-num.sync="pageNum"
+        @change-page="(pageNumber) => {pageNum = pageNumber}"
         :is-loading="isLoading"
+        :page-num="pageNum"
         :last-page-num="Math.ceil(resultCount / countPerPage) - 1"
       />
       <div
@@ -89,7 +90,6 @@
 </template>
 
 <script setup>
-import { debounce } from '../utility/debounce';
 import { useDebounceFn } from '@vueuse/core'
 
 const searchStr = ref('');
@@ -118,7 +118,7 @@ const countPerPage = computed(() => {
 
 watch(pageNum, () => {
   isLoading.value = true
-  debouncedSearch();
+  findBreeds();
 })
 
 watch(toggleDialog, (newVal) => {
@@ -152,7 +152,7 @@ const findBreeds = async () => {
       resultCount.value = searchRes.data.value.dataCount;
       searchResults.value = searchRes.data.value.results
       nextDisable.value =
-        resultCount.value < (pageNum.value + 1) * countPerPage.value
+            resultCount.value < (pageNum.value + 1) * countPerPage.value
     } else if (searchRes && searchRes.error.value?.statusCode) {
       resultCount.value = 0
       searchResults.value = []
