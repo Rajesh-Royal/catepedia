@@ -2,7 +2,6 @@
   <div>
     <info-dialog
       v-show="toggleDialog"
-      ref="infoDialog"
       :cat-breed="catBreed"
       @close-dialog="toggleDialog = !toggleDialog"
     />
@@ -89,86 +88,84 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { debounce } from '../utility/debounce';
 
-export default {
-  data: () => {
-    return {
-      searchStr: '',
-      timeoutId: null,
-      searchResults: [],
-      resultCount: 0,
-      pageNum: 0,
-      catBreed: {},
-      isLoading: true,
-      firstLoad: true,
-      toggleDialog: false,
-      error: {},
+const searchStr = ref('');
+const timeoutId = ref(null);
+const searchResults = ref([]);
+const resultCount = ref(0);
+const pageNum = ref(0);
+const catBreed = ref({});
+const isLoading = ref(true);
+const firstLoad = ref(true);
+const toggleDialog = ref(false);
+const nextDisable = ref(false);
+const error = ref({}); 
+
+const {isDesktop, isTablet} = useDevice();
+
+const countPerPage = computed(() => {
+  let cardCount = 5
+  if (isDesktop) {
+    cardCount = 9
+  } else if (isTablet) {
+    cardCount = 6
+  }
+  return cardCount
+})
+
+watch(pageNum, () => {
+  isLoading.value = true
+  timeoutId.value = debounce(findBreeds, timeoutId.value)()
+})
+
+watch(toggleDialog, (newVal) => {
+  if (newVal) {
+    document.body.classList.add('no-scroll')
+  } else {
+    document.body.classList.remove('no-scroll')
+  }
+})
+
+const searchBreed = () => {
+  error.value = {}
+  if (searchStr.value) {
+    isLoading.value = true
+    firstLoad.value = false
+    pageNum.value = 0
+    timeoutId.value = debounce(findBreeds, timeoutId.value)()
+  } else {
+    isLoading.value = false
+    pageNum.value = 0
+    timeoutId.value = null
+    searchResults.value = []
+  }
+}
+
+const findBreeds = async () => {
+  if (searchStr.value) {
+    const searchRes = await useFetch(`/api/theCatApi/fetchCatsByBreed?breed=${searchStr.value}`)
+  
+    if (searchRes && searchRes.data.value && searchRes.data.value.length) {
+      resultCount.value = searchRes.data.value.length
+      searchResults.value = searchRes.data.value
+      nextDisable.value =
+        resultCount.value < (pageNum.value + 1) * countPerPage.value
+    } else if (searchRes && searchRes.error.value?.statusCode) {
+      resultCount.value = 0
+      searchResults.value = []
+      error.value = searchRes.error
     }
-  },
-  computed: {
-    countPerPage() {
-      let cardCount = 5
-      if (this.$device.isDesktop) {
-        cardCount = 9
-      } else if (this.$device.isTablet) {
-        cardCount = 6
-      }
-      return cardCount
-    },
-  },
-  watch: {
-    pageNum() {
-      this.isLoading = true
-      this.timeoutId = debounce(this.findBreeds, this.timeoutId)()
-    },
-    toggleDialog(newVal) {
-      if (newVal) {
-        document.body.classList.add('no-scroll')
-        this.$refs.infoDialog.focusClose()
-      } else {
-        document.body.classList.remove('no-scroll')
-      }
-    },
-  },
-  methods: {
-    searchBreed() {
-      this.error = {}
-      if (this.searchStr) {
-        this.isLoading = true
-        this.firstLoad = false
-        this.pageNum = 0
-        this.timeoutId = debounce(this.findBreeds, this.timeoutId)()
-      } else {
-        this.isLoading = false
-        this.pageNum = 0
-        this.timeoutId = null
-        this.searchResults = []
-      }
-    },
-    async findBreeds() {
-      if (this.searchStr) {
-        const searchRes = await useFetch(`/api/theCatApi/fetchCatsByBreed?breed=${this.searchStr}`)
-       
-        if (searchRes && searchRes.data.value && searchRes.data.value.length) {
-          this.resultCount = searchRes.data.value.length
-          this.searchResults = searchRes.data.value
-          this.nextDisable =
-            this.resultCount < (this.pageNum + 1) * this.countPerPage
-        } else if (searchRes && searchRes.errorCode) {
-          this.resultCount = 0
-          this.searchResults = []
-          this.error = searchRes
-        }
-      }
-      this.timeoutId = null
-      this.isLoading = false
-    },
-    showDialog(selectedBreed) {
-      this.catBreed = selectedBreed
-      this.toggleDialog = !this.toggleDialog
-    },
-  },
+  }
+  timeoutId.value = null
+  isLoading.value = false
+}
+
+const showDialog = (selectedBreed) => {
+  catBreed.value = selectedBreed
+  toggleDialog.value = !toggleDialog.value
 }
 </script>
+
+
