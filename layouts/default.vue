@@ -50,7 +50,7 @@
         <div class="flex">
           <button
             type="button"
-            class="p-2 my-2 mr-2 flex text-xl items-center outline-none border-2 border-lavender-dark focus:bg-white focus:text-blue-dark bg-lavender-dark text-white border border-dashed border-white shadow-lg"
+            class="p-2 my-2 mr-2 flex text-xl items-center outline-none border-2 border-lavender-dark focus:bg-white focus:text-blue-dark bg-lavender-dark text-white border border-dashed border-white shadow-lg font-['CuteMeow']"
             aria-labelledby="toggle-help"
             @click="() => {
               toggleHelp = !toggleHelp
