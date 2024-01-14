@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   alias: {
     '~': `<rootDir>`,
   },
+  typescript: {
+    typeCheck: true
+  },
   devtools: {
     enabled: true,
     timeline: {
