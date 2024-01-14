@@ -1,9 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxtjs/device'],
+  modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxtjs/device', '@nuxtjs/google-fonts'],
   alias: {
     '~': `<rootDir>`,
   },
+  googleFonts: {
+    display: 'swap', // 'auto' | 'block' | 'swap' | 'fallback' | 'optional'
+    families: {
+      'Chakra Petch': true,
+    }
+  },
+  css: [
+    "./assets/css/global.css",
+],
   typescript: {
     typeCheck: true
   },

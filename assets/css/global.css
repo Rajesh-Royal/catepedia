@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "CuteMeow";
+  src: local("CuteMeow"),
+   url(../fonts/CuteMeow.otf) format("truetype");
+}
+@font-face {
+  font-family: "SimpleCatFont";
+  src: local("SimpleCatFont"),
+   url(../fonts/simple-cat-font.otf) format("truetype");
+}
+
+html, body, :host {
+  font-family: 'Chakra Petch', Rubik, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange }
+}
