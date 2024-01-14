@@ -34,7 +34,7 @@
           Search Meow!
         </button>
       </form>
-      <img src="../assets/images/catepedia.gif" class="m-auto h-48 w-48 my-20"/>
+      <img src="../assets/images/catepedia.gif" class="m-auto h-48 w-48 mt-8" />
     </div>
 </template>
 
