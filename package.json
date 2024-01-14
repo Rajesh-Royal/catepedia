@@ -1,5 +1,5 @@
 {
-  "name": "catopedia",
+  "name": "catepedia",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,5 +14,10 @@
     "nuxt": "^3.9.0",
     "vue": "^3.4.0",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "@nuxtjs/device": "^3.1.1",
+    "@vueuse/core": "^10.7.1",
+    "@vueuse/nuxt": "^10.7.1"
   }
 }
