@@ -24,7 +24,7 @@ const openGraph = [
   },
   {
     property: 'og:image',
-    content: 'ttps://ogcdn.net/2c2c6737-47d4-4459-9969-e711eb48394c/v1/catepedia.vercel.app/Catepedia%20%7C%20The%20Ultimate%20Guide%20to%20Cat%20Breeds/Catepedia%20allows%20you%20to%20search%20and%20learn%20more%20about%20various%20cat%20breeds./https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fdocuments%2F5365a380-3e00-4974-b93f-1a04f9d49a63.jpg%3Ftoken%3DsUl48uonQBrYGgweKdo6oqp5mb9CbglNBVcoHuB_pGA%26height%3D576%26width%3D1200%26expires%3D33241304565/og.png',
+    content: 'https://ogcdn.net/2c2c6737-47d4-4459-9969-e711eb48394c/v1/catepedia.vercel.app/Catepedia%20%7C%20The%20Ultimate%20Guide%20to%20Cat%20Breeds/Catepedia%20allows%20you%20to%20search%20and%20learn%20more%20about%20various%20cat%20breeds./https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fdocuments%2F5365a380-3e00-4974-b93f-1a04f9d49a63.jpg%3Ftoken%3DsUl48uonQBrYGgweKdo6oqp5mb9CbglNBVcoHuB_pGA%26height%3D576%26width%3D1200%26expires%3D33241304565/og.png',
   },
 ]
 
@@ -39,7 +39,7 @@ const twitter = [
   },
   {
     property: 'twitter:image',
-    content: 'ttps://ogcdn.net/2c2c6737-47d4-4459-9969-e711eb48394c/v1/catepedia.vercel.app/Catepedia%20%7C%20The%20Ultimate%20Guide%20to%20Cat%20Breeds/Catepedia%20allows%20you%20to%20search%20and%20learn%20more%20about%20various%20cat%20breeds./https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fdocuments%2F5365a380-3e00-4974-b93f-1a04f9d49a63.jpg%3Ftoken%3DsUl48uonQBrYGgweKdo6oqp5mb9CbglNBVcoHuB_pGA%26height%3D576%26width%3D1200%26expires%3D33241304565/og.png',
+    content: 'https://ogcdn.net/2c2c6737-47d4-4459-9969-e711eb48394c/v1/catepedia.vercel.app/Catepedia%20%7C%20The%20Ultimate%20Guide%20to%20Cat%20Breeds/Catepedia%20allows%20you%20to%20search%20and%20learn%20more%20about%20various%20cat%20breeds./https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fdocuments%2F5365a380-3e00-4974-b93f-1a04f9d49a63.jpg%3Ftoken%3DsUl48uonQBrYGgweKdo6oqp5mb9CbglNBVcoHuB_pGA%26height%3D576%26width%3D1200%26expires%3D33241304565/og.png',
   },
 ]
 
