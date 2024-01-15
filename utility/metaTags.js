@@ -15,7 +15,7 @@ const base = [
 
 const openGraph = [
   { property: 'og:type', content: 'website' },
-  { property: 'og:url', content: 'https://github.com/Rajesh-Royal/catepedia' },
+  { property: 'og:url', content: 'https://catepedia.vercel.app' },
   { property: 'og:title', content: 'Catepedia' },
   {
     property: 'og:description',
@@ -24,13 +24,13 @@ const openGraph = [
   },
   {
     property: 'og:image',
-    content: 'https://www.freewebheaders.com/wp-content/gallery/cats/cache/cats-header-20738-800x200.jpg-nggid03207-ngg0dyn-1280x375x100-00f0w010c011r110f110r010t010.jpg',
+    content: 'https://github.com/Rajesh-Royal/catepedia/blob/master/public/catepedia-website-banner.png',
   },
 ]
 
 const twitter = [
   { property: 'twitter:card', content: 'summary_large_image' },
-  { property: 'twitter:url', content: 'https://github.com/Rajesh-Royal/catepedia' },
+  { property: 'twitter:url', content: 'https://catepedia.vercel.app' },
   { property: 'twitter:title', content: 'Catepedia' },
   {
     property: 'twitter:description',
@@ -39,7 +39,7 @@ const twitter = [
   },
   {
     property: 'twitter:image',
-    content: 'https://www.freewebheaders.com/wp-content/gallery/cats/cache/cats-header-20738-800x200.jpg-nggid03207-ngg0dyn-1280x375x100-00f0w010c011r110f110r010t010.jpg',
+    content: 'https://github.com/Rajesh-Royal/catepedia/blob/master/public/catepedia-website-banner.png',
   },
 ]
 
