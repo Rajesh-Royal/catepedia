@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxtjs/device', '@nuxtjs/google-fonts'],
+  modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxtjs/device', '@nuxtjs/google-fonts', 'nuxt-security'],
   alias: {
     '~': `<rootDir>`,
   },
