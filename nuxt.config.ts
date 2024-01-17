@@ -4,6 +4,15 @@ export default defineNuxtConfig({
   alias: {
     '~': `<rootDir>`,
   },
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        'img-src': ["'self'", 'data:', 'https://cdn2.thecatapi.com/']
+      },
+      crossOriginResourcePolicy: "cross-origin",
+      crossOriginEmbedderPolicy: "credentialless",
+    },
+  },
   googleFonts: {
     display: 'swap', // 'auto' | 'block' | 'swap' | 'fallback' | 'optional'
     families: {
