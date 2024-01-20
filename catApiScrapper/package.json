@@ -1,0 +1,22 @@
+{
+  "name": "catapiscrapper",
+  "version": "1.0.0",
+  "description": "scrap the cat api data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf ./build && tsc",
+    "start": "ts-node src/index.ts"
+  },
+  "author": "Rajesh-Royal",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3"
+  }
+}

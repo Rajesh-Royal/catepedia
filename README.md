@@ -35,6 +35,9 @@ npm install
 npm run dev
 ```
 
+## Use Cate API Scrapper to pull thecatapi data locally
+Check inside `./catApiScrapper` folder.
+
 ## Contributing
 
 Catepedia is an open source project and contributions are welcome. If you want to contribute, please follow these steps:
