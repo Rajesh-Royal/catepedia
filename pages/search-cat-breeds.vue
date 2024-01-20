@@ -1,88 +1,48 @@
 <template>
   <div>
-    <info-dialog
-      v-show="toggleDialog"
-      :cat-breed="catBreed"
-      @close-dialog="toggleDialog = !toggleDialog"
-    />
+    <info-dialog v-show="toggleDialog" :cat-breed="catBreed" @close-dialog="toggleDialog = !toggleDialog" />
     <div class="py-7">
-      <h1 class="text-4xl font-bold pl-1">
-       Search cats by their breed name
+      <h1 class="text-6xl font-bold pl-1 text-center font-['CuteMeow'] white-shadow-text ">
+        Search <span class="text-8xl">cats</span> by their breed name
       </h1>
-      <p class="mt-2.5 pl-1">
+      <p class="mt-2.5 pl-1 text-center text-xl">
         Learn more about all the furry felines around you by searching for them.
         It's the cat-cyclopedia you didn't know you needed till now!
       </p>
-      <form
-        class="text-2xl mt-6 flex flex-wrap lg:flex-nowrap gap-3"
-        @submit.prevent="searchBreed"
-      >
+      <form class="text-2xl mt-6 flex flex-wrap justify-center lg:flex-nowrap gap-3" @submit.prevent="searchBreed">
         <label v-show="false" for="search-a-cat-breed">
           Enter a search term
         </label>
-        <input
-          id="search-a-cat-breed"
-          v-model="searchStr"
-          name="search-a-cat-breed"
-          type="text"
+        <input id="search-a-cat-breed" v-model="searchStr" name="search-a-cat-breed" type="text"
           class="p-2 min-w-full lg:min-w-0 w-full outline-none border-2 border-white bg-white focus:border-blue-dark rounded border border-dashed border-white shadow-lg"
-          placeholder="Search for a cat breed"
-          @input="searchBreed"
-        />
-        <button
-          type="submit"
-          aria-label="Search Now"
-          class="py-2 px-4 flex-shrink-0 outline-none border-2 border-blue-dark focus:bg-white focus:text-blue-dark bg-blue-dark text-white border border-dashed border-white shadow-lg"
-        >
+          placeholder="Search for a cat breed" @input="searchBreed" />
+        <button type="submit" aria-label="Search Now"
+          class="py-2 px-4 flex-shrink-0 outline-none border-2 border-blue-dark focus:bg-white focus:text-blue-dark bg-blue-dark text-white border border-dashed border-white shadow-lg">
           Search Meow!
         </button>
       </form>
       <div>
-        <skeleton-loader
-          :is-loading="isLoading && !firstLoad"
-          :count-per-page="countPerPage"
-        />
-        <div
-          v-if="searchResults.length && !isLoading"
-          class="flex flex-wrap mt-6 -mx-3"
-        >
-          <div
-            v-for="searchResult in searchResults"
-            :key="searchResult.id"
-            class="w-full md:w-1/2 lg:w-1/3 p-3"
-          >
-            <cat-card
-              :cat-breed="searchResult"
-              @update:toggle-dialog="showDialog"
-            />
+        <skeleton-loader :is-loading="isLoading && !firstLoad" :count-per-page="countPerPage" />
+        <div v-if="searchResults.length && !isLoading" class="flex flex-wrap mt-6 -mx-3">
+          <div v-for="searchResult in searchResults" :key="searchResult.id" class="w-full md:w-1/2 lg:w-1/3 p-3">
+            <cat-card :cat-breed="searchResult" @update:toggle-dialog="showDialog" />
           </div>
         </div>
-        <div
-          v-else-if="
-            !searchResults.length &&
-            error &&
-            Object.keys(error).length &&
-            !isLoading
-          "
-          class="mt-6"
-        >
+        <lazy-cat-404 v-if="show404NotFound" />
+        <div v-else-if="!searchResults.length &&
+          error &&
+          Object.keys(error).length &&
+          !isLoading
+          " class="mt-6">
           <lazy-cat-404 v-if="Math.floor(error.errorCode) === 404" />
           <p v-else>
             Error {{ Math.floor(error.errorCode) }} : {{ error.error.error }}
           </p>
         </div>
       </div>
-      <lazy-pagination
-        v-if="searchResults.length"
-        @change-page="(pageNumber) => {pageNum = pageNumber}"
-        :is-loading="isLoading"
-        :page-num="pageNum"
-        :last-page-num="Math.ceil(resultCount / countPerPage) - 1"
-      />
-      <div
-        v-if="searchResults.length && !isLoading"
-        class="text-center text-sm text-gray-dark mt-1"
-      >
+      <lazy-pagination v-if="searchResults.length" @change-page="(pageNumber) => { pageNum = pageNumber }"
+        :is-loading="isLoading" :page-num="pageNum" :last-page-num="Math.ceil(resultCount / countPerPage) - 1" />
+      <div v-if="searchResults.length && !isLoading" class="text-center text-sm text-gray-dark mt-1">
         {{ resultCount }} results found!
       </div>
     </div>
@@ -91,7 +51,7 @@
 
 <script setup>
 import { useDebounceFn } from '@vueuse/core';
-import metaTags, {siteName} from '../utility/metaTags';
+import metaTags, { siteName } from '../utility/metaTags';
 
 const route = useRoute();
 
@@ -107,12 +67,21 @@ const isLoading = ref(true);
 const firstLoad = ref(true);
 const toggleDialog = ref(false);
 const nextDisable = ref(false);
-const error = ref({}); 
+const error = ref({});
+const dataNotFound = ref(false);
 
-const {isDesktop, isTablet} = useDevice();
+const show404NotFound = computed(() => {
+  if (dataNotFound.value && resultCount.value === 0 && searchStr.value && !isLoading.value) {
+    return true
+  } else {
+    return false
+  }
+})
+
+const { isDesktop, isTablet } = useDevice();
 
 onMounted(() => {
-  if(catBreedFromRoute) {
+  if (catBreedFromRoute) {
     searchBreed();
   }
 });
@@ -155,25 +124,40 @@ const searchBreed = () => {
   }
 }
 
+const handleOnError = (error) => {
+  debugger;
+  resetSearchResults();
+  error.value = error
+}
+
+const resetSearchResults = () => {
+  resultCount.value = 0;
+  searchResults.value = [];
+}
+
 const findBreeds = async () => {
   if (searchStr.value) {
-    const searchRes = await useFetch(`/api/theCatApi/fetchCatsByBreed?breed=${searchStr.value}&page=${pageNum.value}&limit=${countPerPage.value}`)
-  
-    if (searchRes && searchRes.data.value && searchRes.data.value.results.length) {
-      resultCount.value = searchRes.data.value.dataCount;
-      searchResults.value = searchRes.data.value.results
-      nextDisable.value =
-            resultCount.value < (pageNum.value + 1) * countPerPage.value
-    } else if (searchRes && searchRes.error.value?.statusCode) {
-      resultCount.value = 0
-      searchResults.value = []
-      error.value = searchRes.error
+    try {
+      const searchRes = await useFetch(`/api/theCatApi/fetchCatsByBreed?breed=${searchStr.value}&page=${pageNum.value}&limit=${countPerPage.value}`)
+      if (searchRes && searchRes.data.value && searchRes.data.value.results.length) {
+        resultCount.value = searchRes.data.value.dataCount;
+        searchResults.value = searchRes.data.value.results
+        nextDisable.value =
+          resultCount.value < (pageNum.value + 1) * countPerPage.value
+      } else if (searchRes && searchRes.error.value?.statusCode) {
+        handleOnError(searchRes.error)
+      } else if (searchRes.data.value.status === 404) {
+        dataNotFound.value = true;
+        resetSearchResults();
+      }
+    } catch (error) {
+      handleOnError(error);
     }
   }
   isLoading.value = false
 }
 
-const debouncedSearch = useDebounceFn(findBreeds, 1000, {maxWait: 3000});
+const debouncedSearch = useDebounceFn(findBreeds, 1000, { maxWait: 3000 });
 
 const showDialog = (selectedBreed) => {
   catBreed.value = selectedBreed
