@@ -20,7 +20,7 @@
     </div>
     <div v-if="catBreed.reference_image_id" class="w-full h-full">
       <div v-show="!imageLoading" class="flex justify-center md:justify-end items-center">
-        <img :src="`/_nuxt/assets/cat-images/${catBreed.reference_image_id}.jpg`"
+        <img :src="`/cat-images/${catBreed.reference_image_id}.jpg`"
           :alt="`A picture of a ${catBreed.name ? catBreed.name : 'cat'}`" class="h-48 w-full object-cover"
           @load="imageLoading = false" />
       </div>
