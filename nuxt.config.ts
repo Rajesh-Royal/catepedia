@@ -20,10 +20,7 @@ export default defineNuxtConfig({
   },
   css: [
     "./assets/css/global.css",
-],
-  typescript: {
-    typeCheck: true
-  },
+  ],
   devtools: {
     enabled: true,
     timeline: {
@@ -94,7 +91,7 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    '/search-cat-breeds': {ssr: true}
+    '/search-cat-breeds': { ssr: true }
   },
   ignore: ["./catApiScrapper/*"]
 })
