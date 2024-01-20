@@ -2,7 +2,6 @@
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxtjs/device', '@nuxtjs/google-fonts', 'nuxt-security'],
   alias: {
-    '~': `<rootDir>`,
   },
   security: {
     headers: {
