@@ -1254,7 +1254,8 @@
     "rex": 0,
     "suppressed_tail": 0,
     "short_legs": 0,
-    "hypoallergenic": 0
+    "hypoallergenic": 0,
+    "reference_image_id": "european-burmese"
   },
   {
     "weight": {
@@ -1421,7 +1422,7 @@
     "short_legs": 0,
     "wikipedia_url": "https://en.wikipedia.org/wiki/Japanese_Bobtail",
     "hypoallergenic": 0,
-    "reference_image_id": "-tm9-znzl"
+    "reference_image_id": "tm9-znzl"
   },
   {
     "weight": {
@@ -1699,6 +1700,7 @@
     "rare": 0,
     "rex": 0,
     "suppressed_tail": 0,
+    "reference_image_id": "malayan",
     "short_legs": 0,
     "wikipedia_url": "https://en.wikipedia.org/wiki/Asian_cat",
     "hypoallergenic": 0
@@ -1988,7 +1990,7 @@
     "short_legs": 0,
     "wikipedia_url": "https://en.wikipedia.org/wiki/Persian_(cat)",
     "hypoallergenic": 0,
-    "reference_image_id": "-Zfz5z2jK"
+    "reference_image_id": "Zfz5z2jK"
   },
   {
     "weight": {
