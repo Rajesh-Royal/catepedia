@@ -1,6 +1,6 @@
 <template>
   <div class="py-7">
-    <h1 class="text-6xl font-bold pl-1 text-center font-['CuteMeow'] shadow-text">
+    <h1 class="text-6xl font-bold pl-1 text-center font-['CuteMeow'] white-shadow-text ">
       <span class="text-9xl">Meow</span>-sic to Your Ears<span class="text-lavender">:</span> A <span
         class="text-9xl">Cat</span> Breed Search Engine 🎵
     </h1>
@@ -39,8 +39,8 @@
 const breedSearchString = ref('');
 </script>
 
-<style scoped>
-.shadow-text {
+<style>
+.white-shadow-text {
   text-shadow: 2px 2px 0 #ffffff, 4px 4px 0 #ffffff, 6px 6px 0 rgb(109 88 146 / 1);
 }
 </style>
