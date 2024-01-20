@@ -28,15 +28,15 @@
             <cat-card :cat-breed="searchResult" @update:toggle-dialog="showDialog" />
           </div>
         </div>
-        <lazy-cat-404 v-if="show404NotFound" />
+        <lazy-cat-404 v-else-if="show404NotFound" />
         <div v-else-if="!searchResults.length &&
           error &&
           Object.keys(error).length &&
           !isLoading
           " class="mt-6">
-          <lazy-cat-404 v-if="Math.floor(error.errorCode) === 404" />
-          <p v-else>
-            Error {{ Math.floor(error.errorCode) }} : {{ error.error.error }}
+          <lazy-cat-404 v-if="Math.floor(error.value.statusCode) === 404" />
+          <p v-else class="text-2xl text-red-500 text-center py-7">
+            <span class="font-bold">Error:</span> {{ Math.floor(error.value.statusCode) }} : {{ error.value.statusMessage }}
           </p>
         </div>
       </div>
@@ -124,10 +124,9 @@ const searchBreed = () => {
   }
 }
 
-const handleOnError = (error) => {
-  debugger;
+const handleOnError = (err) => {
   resetSearchResults();
-  error.value = error
+  error.value = err
 }
 
 const resetSearchResults = () => {

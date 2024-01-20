@@ -1,3 +1,4 @@
+const colors = require('tailwindcss/colors')
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxtjs/device', '@nuxtjs/google-fonts', 'nuxt-security'],
@@ -51,6 +52,7 @@ export default defineNuxtConfig({
           ],
         },
         colors: {
+          ...colors,
           transparent: 'transparent',
           current: 'currentColor',
           pink: {
