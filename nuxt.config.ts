@@ -95,5 +95,6 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/search-cat-breeds': {ssr: true}
-  }
+  },
+  ignore: ["./catApiScrapper/*"]
 })
