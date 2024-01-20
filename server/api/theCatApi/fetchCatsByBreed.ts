@@ -15,7 +15,14 @@ export default defineEventHandler(async (event) => {
     startIndex * 1 + Number(limit) * 1
   );
 
+  let status = 200;
+
+  if(catApiResponse.length === 0) { 
+    status = 404;
+  }
+
   return {
+    status,
     success: true,
     results,
     dataCount: catApiResponse.length,
