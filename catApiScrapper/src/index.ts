@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import {pipeline, type PipelineSource} from 'stream'
 import * as util from 'util';
-import type { CatApiResponse } from './types'
+import type { CatApiResponse } from './catBreedInterface'
 
 // Convert pipeline to Promise form to use with async/await
 const pipelineAsync = util.promisify(pipeline);
