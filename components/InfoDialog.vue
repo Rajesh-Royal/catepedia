@@ -54,7 +54,7 @@
               class="flex justify-center md:justify-end items-center p-1"
             >
               <img
-                :src="`https://cdn2.thecatapi.com/images/${catBreed.reference_image_id}.jpg`"
+                :src="images[catBreed.reference_image_id]"
                 :alt="`A picture of a ${catBreed.name ? catBreed.name : 'cat'}`"
                 class="rounded-lg h-48"
                 @load="imageLoading = false"
@@ -239,8 +239,10 @@ export default {
     },
   },
   data: () => {
+    const {images} = useAssetCatImages();
     return {
       imageLoading: true,
+      images,
     }
   },
   computed: {
