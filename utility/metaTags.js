@@ -1,10 +1,12 @@
 export const siteName = "Catepedia";
 export const siteTitle = "The Ultimate Guide to Cat Breeds";
 
+const ogTitle = siteName + ' | ' + siteTitle; 
+
 const base = [
   { charset: 'utf-8' },
   { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-  { name: 'title', content: 'Catepedia | The Ultimate Guide to Cat Breeds' },
+  { name: 'title', content: ogTitle },
   {
     hid: 'description',
     name: 'description',
@@ -16,7 +18,7 @@ const base = [
 const openGraph = [
   { property: 'og:type', content: 'website' },
   { property: 'og:url', content: 'https://catepedia.vercel.app' },
-  { property: 'og:title', content: 'Catepedia' },
+  { property: 'og:title', content: ogTitle },
   {
     property: 'og:description',
     content:
@@ -31,7 +33,7 @@ const openGraph = [
 const twitter = [
   { property: 'twitter:card', content: 'summary_large_image' },
   { property: 'twitter:url', content: 'https://catepedia.vercel.app' },
-  { property: 'twitter:title', content: 'Catepedia' },
+  { property: 'twitter:title', content: ogTitle},
   {
     property: 'twitter:description',
     content:

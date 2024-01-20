@@ -36,7 +36,8 @@ npm run dev
 ```
 
 ## Use Cate API Scrapper to pull thecatapi data locally
-Check inside `./catApiScrapper` folder.
+
+Check [CatAPIScrapper Readme.md](./catApiScrapper/Readme.md)
 
 ## Contributing
 
@@ -53,6 +54,7 @@ Catepedia is an open source project and contributions are welcome. If you want t
 Catepedia is licensed under the [MIT License](/LICENSE).
 
 ## Other Information
+
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup

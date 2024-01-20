@@ -91,7 +91,7 @@
 
 <script setup>
 import { useDebounceFn } from '@vueuse/core';
-import { siteName } from '../utility/metaTags';
+import metaTags, {siteName} from '../utility/metaTags';
 
 const route = useRoute();
 
@@ -180,8 +180,13 @@ const showDialog = (selectedBreed) => {
   toggleDialog.value = !toggleDialog.value
 }
 
+const title = siteName + ' | Search cat by their breed name';
+const indexOfTitleMeta = metaTags.findIndex((meta) => meta.name === 'title');
+metaTags[indexOfTitleMeta].content = title;
+
 useHead({
-  title: siteName + ' | Search cat by their breed name',
+  title: title,
+  meta: metaTags,
 })
 </script>
 
