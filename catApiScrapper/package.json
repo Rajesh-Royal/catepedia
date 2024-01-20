@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf ./build && tsc",
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "copy": "cp -r ./data/cat-images ../assets/cat-images && cp ./data/catBreeds.json ../assets"
   },
   "author": "Rajesh-Royal",
   "license": "ISC",
